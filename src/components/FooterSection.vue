@@ -39,7 +39,11 @@ const socialLinks = [
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <!-- Company Info -->
         <div class="space-y-4">
-          <h3 class="text-2xl font-bold">SGCID</h3>
+          <h3 class="text-3xl font-bold">
+          <!-- <img class="bg-white" src="../assets/images/logo.png" alt="" width="100"> -->
+
+            SGCID
+          </h3>
           <p class="text-gray-400">Construire avec excellence, créer de la valeur et transformer les espaces pour un
             avenir meilleur.</p>
           <div class="flex space-x-4">

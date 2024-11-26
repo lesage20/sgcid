@@ -4,8 +4,8 @@ import { useMotion } from '@vueuse/motion';
 
 const rentalRef = ref(null);
 const currentSlide = ref(0);
-
-const properties = [
+const currentSlides = ref({0:0, 1:0})
+const properties = ref([
   {
     id: 1,
     title: 'Villa avec Piscine et Jardin',
@@ -15,9 +15,16 @@ const properties = [
     baths: 4,
     area: '300 m²',
     description: 'Villa moderne et spacieuse de 8 chambres, une piscine et un jardin idéale pour la famille associant confort et élégance.',
+    currentSlide: 0,
     images: [
-      'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1502005097973-6a7082348e28?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+      '/images/maison-piscine-1a.jpg',
+      '/images/maison-piscine-1b.jpg',
+      '/images/maison-piscine-1c.jpg',
+      '/images/maison-piscine-1d.jpg',
+      '/images/maison-piscine-1e.jpg',
+      '/images/maison-piscine-1f.jpg',
+      // '../assets/images/maison-piscine-1d.jpg',
+      // 'https://images.unsplash.com/photo-1502005097973-6a7082348e28?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
     ]
   },
   {
@@ -31,40 +38,17 @@ const properties = [
     description: `Un grand salon accueillant, très spacieux, parfait pour vos moments de détente, 
     un grand balcon, de grandes chambres très aérées avec espaces de rangement et une cuisine fonctionnelle. Proche des
     commerces et des transports.`,
+    currentSlide: 0,
     images: [
-      'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-      'https://images.unsplash.com/photo-1536376072261-38c75010e6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
+      '/images/appartement-1a.jpg',
+      '/images/appartement-1b.jpg',
+      '/images/appartement-1c.jpg',
+      '/images/appartement-1d.jpg',
+      // '/images/appartement-1e.jpg',
+      // '/images/appartement-1f.jpg',
     ]
   },
-  // {
-  //   id: 3,
-  //   title: 'Garden Villa',
-  //   location: 'Suburban Oasis',
-  //   price: '$4,800/month',
-  //   beds: 4,
-  //   baths: 3,
-  //   area: '2,500 sq ft',
-  //   description: 'Spacious family home with a beautiful garden, modern kitchen, and dedicated home office space.',
-  //   images: [
-  //     'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-  //     'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
-  //   ]
-  // },
-  // {
-  //   id: 4,
-  //   title: 'Urban Loft',
-  //   location: 'Arts District',
-  //   price: '$2,800/month',
-  //   beds: 1,
-  //   baths: 1,
-  //   area: '950 sq ft',
-  //   description: 'Industrial-style loft with exposed brick walls, high ceilings, and contemporary furnishings.',
-  //   images: [
-  //     'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-  //     'https://images.unsplash.com/photo-1617806118233-18e1de247200?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
-  //   ]
-  // }
-];
+]);
 
 useMotion(rentalRef, {
   initial: { opacity: 0, y: 50 },
@@ -73,26 +57,32 @@ useMotion(rentalRef, {
 });
 
 const nextSlide = (propertyId: number) => {
-  const property = properties.find(p => p.id === propertyId);
+  const property = properties.value.find(p => p.id === propertyId);
   if (!property) return;
 
-  const currentIndex = properties.indexOf(property);
-  if (property.images[currentIndex + 1]) {
-    currentSlide.value = currentIndex + 1;
+  const currentIndex = properties.value.indexOf(property);
+  const slideIndex = property.currentSlide + 1
+  if (property.images[slideIndex]) {
+    // currentSlide.value = slideIndex;
+    properties.value[currentIndex].currentSlide = slideIndex
+
   } else {
-    currentSlide.value = 0;
+    properties.value[currentIndex].currentSlide = 0
   }
 };
 
 const prevSlide = (propertyId: number) => {
-  const property = properties.find(p => p.id === propertyId);
+  const property = properties.value.find(p => p.id === propertyId);
   if (!property) return;
 
-  const currentIndex = properties.indexOf(property);
-  if (property.images[currentIndex - 1]) {
-    currentSlide.value = currentIndex - 1;
+  const currentIndex = properties.value.indexOf(property);
+  const slideIndex = property.currentSlide - 1
+  if (property.images[slideIndex]) {
+    // currentSlide.value = slideIndex;
+    properties.value[currentIndex].currentSlide = slideIndex
+
   } else {
-    currentSlide.value = property.images.length - 1;
+    properties.value[currentIndex].currentSlide = 0
   }
 };
 </script>
@@ -102,7 +92,7 @@ const prevSlide = (propertyId: number) => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold text-primary mb-4">Maison en ventes</h2>
-        <p class="text-xl text-gray-600">Decouvrez nos maison parfaite pour vous.</p>
+        <p class="text-xl text-gray-600">Decouvrez des maisons parfaites pour vous.</p>
       </div>
 
       <div ref="rentalRef" class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -113,7 +103,7 @@ const prevSlide = (propertyId: number) => {
             <div class="relative h-full overflow-hidden">
               <transition-group name="fade">
                 <img v-for="(image, index) in property.images" :key="index" :src="image" :alt="property.title"
-                  class="absolute inset-0 w-full h-full object-cover" v-show="currentSlide === index" />
+                  class="absolute inset-0 w-full h-full object-cover" v-show="property.currentSlide === index" />
               </transition-group>
             </div>
 

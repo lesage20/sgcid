@@ -16,7 +16,8 @@ const navItems = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex items-center">
-          <span class="text-2xl font-bold text-primary">SGCID</span>
+          <!-- <span class="text-2xl font-bold text-primary">SGCID</span> -->
+          <img src="/images/logo.png" alt="" width="150">
         </div>
         
         <!-- Desktop Menu -->
@@ -50,11 +51,11 @@ const navItems = [
         <a v-for="item in navItems" 
            :key="item.name" 
            :href="item.href"
-           class="block px-3 py-2 text-gray-700 hover:text-secondary transition-colors duration-200"
+           class="block px-3  text-gray-700 hover:text-secondary transition-colors duration-200"
            @click="isMenuOpen = false">
           {{ item.name }}
         </a>
-        <a class="w-full mt-2 bg-secondary text-white px-4 py-2 rounded-md hover:bg-opacity-90 transition-colors duration-200">
+        <a class="w-full mt-2 bg-secondary text-white px-4  rounded-md hover:bg-opacity-90 transition-colors duration-200">
           Contactez-nous
         </a>
 
