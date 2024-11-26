@@ -2,10 +2,10 @@
 const currentYear = new Date().getFullYear();
 
 const quickLinks = [
-  { name: 'About Us', href: '#about' },
+  // { name: 'About Us', href: '#about' },
   { name: 'Services', href: '#services' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Rentals', href: '#rentals' },
+  // { name: 'Projects', href: '#projects' },
+  { name: 'Maison en ventes', href: '#rentals' },
   { name: 'Contact', href: '#contact' }
 ];
 

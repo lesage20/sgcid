@@ -2,7 +2,7 @@
 import NavBar from './components/NavBar.vue'
 import HeroSection from './components/HeroSection.vue'
 import ServiceSection from './components/ServiceSection.vue'
-import ProjectSection from './components/ProjectSection.vue'
+// import ProjectSection from './components/ProjectSection.vue'
 import RentalSection from './components/RentalSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import FooterSection from './components/FooterSection.vue'
@@ -13,7 +13,7 @@ import FooterSection from './components/FooterSection.vue'
   <main>
     <HeroSection />
     <ServiceSection />
-    <ProjectSection />
+    <!-- <ProjectSection /> -->
     <RentalSection />
     <ContactSection />
   </main>

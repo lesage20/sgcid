@@ -5,7 +5,7 @@ const isMenuOpen = ref(false);
 const navItems = [
   { name: 'Acceuil', href: '#home' },
   { name: 'Nos Services', href: '#services' },
-  { name: 'Projets', href: '#projects' },
+  // { name: 'Projets', href: '#projects' },
   { name: 'Maisons en vente', href: '#rentals' },
   // { name: 'Contact', href: '#contact' }
 ];
